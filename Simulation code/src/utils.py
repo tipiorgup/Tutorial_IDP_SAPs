@@ -5,6 +5,7 @@ from MDAnalysis.lib.distances import distance_array
 from scipy.spatial.transform import Rotation as R
 import numpy as np
 import pandas as pd
+from .helper_functions import *
 try:
     import pdbfixer
 except Exception as e:
