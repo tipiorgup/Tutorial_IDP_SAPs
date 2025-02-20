@@ -2,6 +2,7 @@
 
 from src.parsers import parse_arguments, load_peptide_pairs
 from src.simulation import run_single_simulation
+from src.helper_functions import *  # Add this import
 
 def main():
     """
