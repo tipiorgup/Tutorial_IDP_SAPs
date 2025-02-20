@@ -2,7 +2,6 @@
 from .parsers import parse_arguments, load_peptide_pairs, validate_peptide_pair
 from .system_setup import calculate_yukawa_parameters, setup_system
 from .simulation import run_single_simulation
-from .helper_functions import *
 from .utils import build_straight_CA_chain, write_pdb, insert_molecules
 
 # Define what should be available when using "from src import *"

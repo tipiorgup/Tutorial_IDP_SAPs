@@ -10,9 +10,6 @@ except ImportError:
     import simtk.unit as unit
 import sys
 import os
-# from openabc.lib import (_amino_acids, _amino_acid_1_letter_to_3_letters_dict, 
-#                          _dna_nucleotides, _dna_WC_pair_dict, 
-#                          _rna_nucleotides)
 
 """
 Some code is adapted from Open3SPN2. 

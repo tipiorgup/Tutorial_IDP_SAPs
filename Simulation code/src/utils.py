@@ -5,7 +5,6 @@ from MDAnalysis.lib.distances import distance_array
 from scipy.spatial.transform import Rotation as R
 import numpy as np
 import pandas as pd
-from .helper_functions import *
 try:
     import pdbfixer
 except Exception as e:
@@ -20,6 +19,49 @@ _amino_acid_1_letter_to_3_letters_dict = dict(A='ALA', R='ARG', N='ASN', D='ASP'
                                               Q='GLN', E='GLU', G='GLY', H='HIS', I='ILE', 
                                               L='LEU', K='LYS', M='MET', F='PHE', P='PRO', 
                                               S='SER', T='THR', W='TRP', Y='TYR', V='VAL')
+
+def parse_pdb(pdb_file):
+    """
+    Load pdb file as pandas dataframe.
+    
+    Parameters
+    ----------
+    pdb_file : str
+        Path for the pdb file. 
+    
+    Returns
+    -------
+    pdb_atoms : pd.DataFrame
+        A pandas dataframe includes atom information. 
+    
+    """
+    def pdb_line(line):
+        return dict(recname=str(line[0:6]).strip(),
+                    serial=int(line[6:11]),
+                    name=str(line[12:16]).strip(),
+                    altLoc=str(line[16:17]),
+                    resname=str(line[17:20]).strip(),
+                    chainID=str(line[21:22]),
+                    resSeq=int(line[22:26]),
+                    iCode=str(line[26:27]),
+                    x=float(line[30:38]),
+                    y=float(line[38:46]),
+                    z=float(line[46:54]),
+                    occupancy=0.0 if line[54:60].strip() == '' else float(line[54:60]),
+                    tempFactor=0.0 if line[60:66].strip() == '' else float(line[60:66]),
+                    element=str(line[76:78].strip()),
+                    charge=str(line[78:80].strip()))
+    with open(pdb_file, 'r') as pdb:
+        lines = []
+        for line in pdb:
+            if (len(line) > 6) and (line[:6] in ['ATOM  ', 'HETATM']):
+                lines += [pdb_line(line)]
+    pdb_atoms = pd.DataFrame(lines)
+    pdb_atoms = pdb_atoms[['recname', 'serial', 'name', 'altLoc',
+                           'resname', 'chainID', 'resSeq', 'iCode',
+                           'x', 'y', 'z', 'occupancy', 'tempFactor',
+                           'element', 'charge']]
+    return pdb_atoms
 
 def build_straight_CA_chain(sequence, r0=0.38):
     """
@@ -142,8 +184,8 @@ def insert_molecules(new_pdb, output_pdb, n_mol, radius=0.5, existing_pdb=None, 
     if existing_pdb is None:
         atoms = pd.DataFrame()
     else:
-        atoms = helper_functions.parse_pdb(existing_pdb)
-    new_atoms = helper_functions.parse_pdb(new_pdb)
+        atoms = parse_pdb(existing_pdb)
+    new_atoms = parse_pdb(new_pdb)
     new_coord = new_atoms[['x', 'y', 'z']].to_numpy()
     new_coord -= np.mean(new_coord, axis=0)
     count_n_mol = 0
@@ -205,5 +247,5 @@ def insert_molecules(new_pdb, output_pdb, n_mol, radius=0.5, existing_pdb=None, 
         else:
             atoms['serial'] = list(range(len(atoms.index)))
     # write the final pdb
-    helper_functions.write_pdb(atoms, output_pdb)
+    write_pdb(atoms, output_pdb)
 
