@@ -4,5 +4,5 @@
 
 ## Notes  
 - This code generates a representation for just **one snapshot**.  
-- It requires the **dictionary** `stored_values` created in the **Simulation Code** and the `ensembles.pkl` file (snapshots), both of which are saved automatically during the MD simulation at `Simulation.ipynb`.  
+- It requires to upload the **dictionary** `stored_values` created in the **Simulation Code** and the `ensembles.pkl` file (snapshots), both of which are saved automatically during the MD simulation at `Simulation.ipynb`.  
  
