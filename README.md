@@ -6,7 +6,7 @@ This tutorial uses an adaptation of the CALVADOS2 model implemented at **[DOI: 1
 ## Folder Structure  
 
 - **Simulation Code**: Contains an interactive Google Colab notebook for simulating both single-peptide assembly and co-assembly.  
-- **SLATM Representations**: Includes an interactive notebook for generating SLATM representations.  
+- **SLATM Representation**: Includes an interactive notebook for generating SLATM representations.  
 
 
 ## References
