@@ -1,7 +1,7 @@
 # Tutorial IDPs SAPs
 
 ## Description
-This tutorial uses an adaptation of the CALVADOS2 model implemented at **[DOI: 10.5281/zenodo.13754000](https://zenodo.org/records/13754000)**.  
+This tutorial uses an adaptation of the CALVADOS2 model implemented at **[DOI: 10.5281/zenodo.13754000](https://zenodo.org/records/13754000)** and creates the Spectrum of London Axilrod–Teller–Muto representation (SLATM).
 
 ## Folder Structure  
 
