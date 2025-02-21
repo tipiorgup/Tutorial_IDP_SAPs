@@ -6,3 +6,5 @@ The interactive notebook depends on `global_vars.py` to create interactive widge
 ## Notes  
 `Simulation.ipynb` is optimized for simulations with 1,000 residues.
 For co-assembly simulations, input the ratio in the format `1-9`, `2-8`, etc., ensuring the total always sums to 10.
+
+For creating the **SLATM represenation**, save locally the `stored_values.pkl` and `ensembles.pkl`.
