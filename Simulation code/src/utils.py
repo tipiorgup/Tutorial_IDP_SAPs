@@ -15,6 +15,14 @@ except ImportError:
     import simtk.unit as unit
 import sys
 import os
+
+"""
+Some code is adapted from Open3SPN2. 
+
+Open3SPN2 and OpenAWSEM paper: 
+Lu, Wei, et al. "OpenAWSEM with Open3SPN2: A fast, flexible, and accessible framework for large-scale coarse-grained biomolecular simulations." PLoS computational biology 17.2 (2021): e1008308.
+"""
+
 _amino_acid_1_letter_to_3_letters_dict = dict(A='ALA', R='ARG', N='ASN', D='ASP', C='CYS', 
                                               Q='GLN', E='GLU', G='GLY', H='HIS', I='ILE', 
                                               L='LEU', K='LYS', M='MET', F='PHE', P='PRO', 
